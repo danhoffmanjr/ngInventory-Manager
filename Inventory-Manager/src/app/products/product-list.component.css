@@ -1,0 +1,8 @@
+.product-list-headers {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.product-list-headers > .product {
+    flex-basis: 30%;
+}

@@ -26,7 +26,7 @@
         <div class="date-available">{{product.releaseDate | date}}</div>
         <div class="price">{{product.price | currency:'USD':'symbol':'1.2-2' }}</div>
         <div class="rating">
-          <app-star-rating></app-star-rating>
+          <app-star-rating [rating]='product.rating'></app-star-rating>
         </div>
       </div>
     </div>

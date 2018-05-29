@@ -2,18 +2,18 @@
   <div class="card-header bg-primary text-white">
     {{title}}
   </div>
-  <div>
+  <div class="filter-by">
     <label>Filter by: </label> 
     <input type="text" [(ngModel)]='listFilter' />
     <h5>Filtered by: {{listFilter}}</h5>
   </div>
   <div class="list-container">
-    <div class="card-title mt-2 product-list-headers">
+    <div class="product-list-headers">
       <h5 class="image">
         <button class="btn btn-primary" (click)='toggleImage()'>{{showImage ? 'Hide' : 'Show'}} Images</button>
       </h5>
       <h5 class="product-name">Product</h5>
-      <h5 class="prod-code">Code</h5>
+      <h5 class="product-code">Code</h5>
       <h5 class="date-available">Available</h5>
       <h5 class="price">Price</h5>
       <h5 class="rating">Rating</h5>
@@ -23,9 +23,11 @@
         <div class="image"><img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName'></div>
         <div class="product-name">{{product.productName}}</div>
         <div class="product-code">{{product.productCode | lowercase | convertToSpaces:'-'}}</div>
-        <div class="date-available">{{product.releaseDate}}</div>
-        <div class="price">{{product.price | currency:'USD':true:'1.2-2'}}</div>
-        <div class="rating">{{product.rating}}</div>
+        <div class="date-available">{{product.releaseDate | date}}</div>
+        <div class="price">{{product.price | currency:'USD':'symbol':'1.2-2' }}</div>
+        <div class="rating">
+          <app-star-rating></app-star-rating>
+        </div>
       </div>
     </div>
   </div>

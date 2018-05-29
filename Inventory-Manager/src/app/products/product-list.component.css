@@ -1,23 +1,26 @@
-.list-container {
-    margin: 1rem;
-    border: 1px solid rgb(187, 186, 186);
+.list-container, .card-body {
+    margin: 0;
+    padding: 0;
 }
 
 .product-list-headers {
     display: flex;
-    margin: 0 1rem;
-    justify-content: space-between;
-    border-bottom: 1px solid rgb(187, 186, 186);
+    margin: .75rem;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #007bff;
 }
 
 .product-item {
     display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgb(187, 186, 186);
+    margin: 0 .75rem;
+    align-items: center;
+    justify-content: center;  
+    border-bottom: 1px solid rgb(214, 214, 214);
 }
 
 .image {
-    flex-basis: 20%;
+    flex-basis: 16.6vw;
 }
 
 .image > img {
@@ -26,21 +29,22 @@
 }
 
 .product-name {
-    flex-basis: 25%;
+    flex-basis: 28.6vw;
 }
 
 .product-code {
-    flex-basis: 10%;
+    flex-basis: 10.6vw;
 }
 
 .date-available {
-    flex-basis: 15%;
+    flex-basis: 16.6vw;
 }
 
 .price {
-    flex-basis: 5%;
+    flex-basis: 10.6vw;
 }
 
 .rating {
-    flex-basis: 5%;
+    flex-basis: 16.6vw;
+    border: 1px solid purple;
 }

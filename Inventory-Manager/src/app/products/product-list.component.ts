@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit {
    
   title: string = "Product List";
   showImage: boolean = false;
+  ratingClickNotice: string = '';
   
   _listFilter: string;
   get listFilter(): string {
@@ -84,6 +85,10 @@ export class ProductListComponent implements OnInit {
     filterBy = filterBy.toLocaleLowerCase();
     return this.products.filter((product: IProduct) =>
       product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  onNotifyClick(message: string): void {
+    this.ratingClickNotice = message;
   }
 
   toggleImage(): void {

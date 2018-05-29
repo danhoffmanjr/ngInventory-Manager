@@ -1,6 +1,20 @@
-.list-container, .card-body {
+.list-container {
     margin: 0;
     padding: 0;
+}
+
+.card-body {
+    margin: 0;
+    padding: 0 0 1rem 0;
+}
+
+.filter-by {
+    padding: 1.25rem 1.25rem 0 1.25rem;
+}
+
+.filter-by > input {
+    display: inline-block;
+    margin: 0 0 0 .25rem;
 }
 
 .product-list-headers {
@@ -13,6 +27,7 @@
 
 .product-item {
     display: flex;
+    padding: .5rem 0;
     margin: 0 .75rem;
     align-items: center;
     justify-content: center;  
@@ -29,11 +44,11 @@
 }
 
 .product-name {
-    flex-basis: 28.6vw;
+    flex-basis: 29.6vw;
 }
 
 .product-code {
-    flex-basis: 10.6vw;
+    flex-basis: 12.6vw;
 }
 
 .date-available {
@@ -45,6 +60,10 @@
 }
 
 .rating {
-    flex-basis: 16.6vw;
-    border: 1px solid purple;
+    flex-basis: 13.6vw;
+}
+
+.product-clicked-notice {
+    text-align: center;
+    padding: .75rem;
 }

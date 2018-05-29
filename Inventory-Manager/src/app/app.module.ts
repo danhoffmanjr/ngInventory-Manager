@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list.component';
 import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
 import { StarRatingComponent } from './shared/star-rating/star-rating.component';
+import { ProductService } from './products/product.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { StarRatingComponent } from './shared/star-rating/star-rating.component'
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 

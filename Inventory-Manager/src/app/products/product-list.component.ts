@@ -10,6 +10,7 @@ export class ProductListComponent implements OnInit {
   constructor() { }
   title: string = "Product List";
   showImage: boolean = false;
+  listFilter: string = 'cart';
   products: any[] = [
     {
         "id": 1,

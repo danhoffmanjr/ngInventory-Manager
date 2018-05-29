@@ -3,9 +3,9 @@
     {{title}}
   </div>
   <div>
-    <label>Filter by: </label>
-    <input type="text">
-    <h5>Filtered by: </h5>
+    <label>Filter by: </label> 
+    <input type="text" [(ngModel)]='listFilter' />
+    <h5>Filtered by: {{listFilter}}</h5>
   </div>
   <div class="list-container">
     <div class="card-title mt-2 product-list-headers">
@@ -24,7 +24,7 @@
         <div class="product-name">{{product.productName}}</div>
         <div class="product-code">{{product.productCode}}</div>
         <div class="date-available">{{product.releaseDate}}</div>
-        <div class="price">{{product.price}}</div>
+        <div class="price">{{product.price | currency:'USD':true:'1.2-2'}}</div>
         <div class="rating">{{product.rating}}</div>
       </div>
     </div>

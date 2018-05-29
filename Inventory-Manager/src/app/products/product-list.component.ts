@@ -26,6 +26,8 @@ export class ProductListComponent implements OnInit {
     this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
   }
 
+  errorMessage: string;
+
   filteredProducts: IProduct[];
 
   products: IProduct[] = [];
@@ -45,8 +47,13 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.products = this._productService.getProducts();
-    this.filteredProducts = this.products;
+    this._productService.getProducts()
+      .subscribe(products => {
+        this.products = products;
+        console.log(JSON.stringify(products));
+        this.filteredProducts = this.products;
+      },
+      error => this.errorMessage = <any>error);
   }
 
 }

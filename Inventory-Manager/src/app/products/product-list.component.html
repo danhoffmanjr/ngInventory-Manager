@@ -22,7 +22,7 @@
       <div class="product-item" *ngFor='let product of products'>
         <div class="image"><img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName'></div>
         <div class="product-name">{{product.productName}}</div>
-        <div class="product-code">{{product.productCode}}</div>
+        <div class="product-code">{{product.productCode | lowercase | convertToSpaces:'-'}}</div>
         <div class="date-available">{{product.releaseDate}}</div>
         <div class="price">{{product.price | currency:'USD':true:'1.2-2'}}</div>
         <div class="rating">{{product.rating}}</div>

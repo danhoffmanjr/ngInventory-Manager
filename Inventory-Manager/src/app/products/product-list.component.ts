@@ -8,10 +8,25 @@ import { IProduct } from './product';
 })
 export class ProductListComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    this.filteredProducts = this.products;
+    this.listFilter = '';
+  }
+   
   title: string = "Product List";
   showImage: boolean = false;
-  listFilter: string = 'cart';
+  
+  _listFilter: string;
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
+  }
+
+  filteredProducts: IProduct[];
+
   products: IProduct[] = [
     {
         "id": 1,
@@ -64,6 +79,12 @@ export class ProductListComponent implements OnInit {
         "imageUrl": "http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
     }
 ];
+
+  performFilter(filterBy: string): IProduct[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((product: IProduct) =>
+      product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
 
   toggleImage(): void {
     this.showImage = !this.showImage;

@@ -19,7 +19,7 @@
       <h5 class="rating">Rating</h5>
     </div>
     <div class="card-body" *ngIf='products && products.length'>
-      <div class="product-item" *ngFor='let product of products'>
+      <div class="product-item" *ngFor='let product of filteredProducts'>
         <div class="image"><img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName'></div>
         <div class="product-name">{{product.productName}}</div>
         <div class="product-code">{{product.productCode | lowercase | convertToSpaces:'-'}}</div>

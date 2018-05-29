@@ -3,20 +3,30 @@
     {{title}}
   </div>
   <div>
-    <label>Filter by: </label><input type="text">
+    <label>Filter by: </label>
+    <input type="text">
     <h5>Filtered by: </h5>
   </div>
-  <div class="card-title mt-2 product-list-headers">
-    <h5 class="image">
-      <button class="btn btn-primary">Show Image</button>
-    </h5>
-    <h5 class="product">Product</h5>
-    <h5 class="prod-code">Code</h5>
-    <h5 class="date-available">Available</h5>
-    <h5 class="price">Price</h5>
-    <h5 class="rating">Rating</h5>
-  </div>
-  <div class="card-body">
-    Card body...
+  <div class="list-container">
+    <div class="card-title mt-2 product-list-headers">
+      <h5 class="image">
+        <button class="btn btn-primary" (click)='toggleImage()'>{{showImage ? 'Hide' : 'Show'}} Images</button>
+      </h5>
+      <h5 class="product-name">Product</h5>
+      <h5 class="prod-code">Code</h5>
+      <h5 class="date-available">Available</h5>
+      <h5 class="price">Price</h5>
+      <h5 class="rating">Rating</h5>
+    </div>
+    <div class="card-body" *ngIf='products && products.length'>
+      <div class="product-item" *ngFor='let product of products'>
+        <div class="image"><img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName'></div>
+        <div class="product-name">{{product.productName}}</div>
+        <div class="product-code">{{product.productCode}}</div>
+        <div class="date-available">{{product.releaseDate}}</div>
+        <div class="price">{{product.price}}</div>
+        <div class="rating">{{product.rating}}</div>
+      </div>
+    </div>
   </div>
 </div>

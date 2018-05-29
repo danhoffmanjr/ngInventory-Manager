@@ -1,8 +1,46 @@
-.product-list-headers {
-    display: flex;
-    justify-content: space-evenly;
+.list-container {
+    margin: 1rem;
+    border: 1px solid rgb(187, 186, 186);
 }
 
-.product-list-headers > .product {
-    flex-basis: 30%;
+.product-list-headers {
+    display: flex;
+    margin: 0 1rem;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(187, 186, 186);
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(187, 186, 186);
+}
+
+.image {
+    flex-basis: 20%;
+}
+
+.image > img {
+    width: 50px;
+    margin: 5px;
+}
+
+.product-name {
+    flex-basis: 25%;
+}
+
+.product-code {
+    flex-basis: 10%;
+}
+
+.date-available {
+    flex-basis: 15%;
+}
+
+.price {
+    flex-basis: 5%;
+}
+
+.rating {
+    flex-basis: 5%;
 }

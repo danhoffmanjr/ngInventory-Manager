@@ -12,11 +12,11 @@ export class ProductListComponent implements OnInit {
   constructor(private _productService: ProductService) {
     this.listFilter = '';
   }
-   
+
   title: string = "Product List";
   showImage: boolean = false;
   ratingClickNotice: string = '';
-  
+
   _listFilter: string;
   get listFilter(): string {
     return this._listFilter;
@@ -47,13 +47,18 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._productService.getProducts()
-      .subscribe(products => {
+    console.log('ngOnInit() called');
+    this.products = this._productService.products;
+    this.filteredProducts = this.products;
+    console.log(this.products);
+
+    /*.subscribe(products => {
         this.products = products;
-        console.log(JSON.stringify(products));
+        console.log(products);
         this.filteredProducts = this.products;
       },
       error => this.errorMessage = <any>error);
+      */
   }
 
 }

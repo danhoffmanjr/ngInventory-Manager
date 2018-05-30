@@ -1,14 +1,8 @@
-import { Injectable } from '@angular/core';
-import { IProduct } from './product';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable }  from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-
-@Injectable()
-export class ProductService {
-    private _apiUrl: string = './../api/in-memory-data.service'; // simulating web api end point & json response type
-    products: IProduct[] = [
+export class InMemoryDataService implements InMemoryDbService {
+  createDb() {
+    const products = [
         {
             "id": 1,
             "productName": "Leaf Rake",
@@ -60,29 +54,6 @@ export class ProductService {
             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
         }
     ];
-
-    constructor(private _http: HttpClient) {
-
-    }
-    
-    getProducts(): IProduct[] {
-        console.log('getProducts() called from products.service.ts' + JSON.stringify(this.products));
-        return this.products;
-        /*
-        let products: Observable<IProduct[]> = this._http.get<IProduct[]>(this._apiUrl);
-        console.log('Observable result: ' + JSON.stringify(products));
-        return products;
-
-        
-            .pipe(
-                tap(data => console.log('ALL: ' + JSON.stringify(data)),
-                catchError(this.handleError))
-            )
-        */
-    }
-
-    handleError(error: HttpErrorResponse) {
-        console.log(error.message);
-        return Observable.throw(error.message);
-    }
+    return {products};
+  }
 }

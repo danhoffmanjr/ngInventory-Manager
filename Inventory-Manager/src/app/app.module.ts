@@ -13,6 +13,7 @@ import { StarRatingComponent } from './shared/star-rating/star-rating.component'
 import { ProductService } from './products/product.service';
 import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
+import { ProductGuardService } from './products/product-guard.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { WelcomeComponent } from './home/welcome.component';
     ConvertToSpacesPipe,
     StarRatingComponent,
     ProductDetailComponent,
-    WelcomeComponent
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,14 +33,15 @@ import { WelcomeComponent } from './home/welcome.component';
     ),
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
-      { path: 'products/:id', component: ProductDetailComponent },
+      { path: 'products/:id', canActivate: [ProductGuardService], component: ProductDetailComponent },
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ])
   ],
   providers: [
-    ProductService
+    ProductService,
+    ProductGuardService
   ],
   bootstrap: [AppComponent]
 })

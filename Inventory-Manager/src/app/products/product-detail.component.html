@@ -1,6 +1,27 @@
-<div class="card">
+<div class="card mt-3">
   <div class="card-header bg-primary text-white" *ngIf='product'>
-    {{title + ': ' + product.productName}}
+    {{title + ': ' + product.id + ': ' + product.productName}}
   </div>
-  <div class="card-body"></div>
+  <div class="card-body">
+    <div class="detail-list">
+      <div>
+        <label>Name: </label> {{product.productName}}</div>
+      <div>
+        <label>Code: </label> {{product.productCode}}</div>
+      <div>
+        <label>Description: </label> {{product.description}}</div>
+      <div>
+        <label>Availability: </label> {{product.releaseDate | date:'shortDate' }}</div>
+      <div>
+        <label>Price: </label> {{product.price | currency:'USD':'symbol':'1.2-2' }}</div>
+      <div>
+        <label>Rating: </label> {{product.rating}}</div>
+    </div>
+    <div class="image">
+        <img [src]='product.imageUrl' [title]='product.productName'>
+    </div>
+  </div>
+  <div class="card-footer">
+      <a class="btn btn-secondary text-white" (click)='onBack()'>Back</a>
+    </div>
 </div>

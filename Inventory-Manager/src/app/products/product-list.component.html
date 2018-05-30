@@ -17,17 +17,19 @@
       <h5 class="date-available">Available</h5>
       <h5 class="price">Price</h5>
       <h5 class="rating">Rating</h5>
+      <h5 class="details">Details</h5>
     </div>
     <div class="card-body" *ngIf='products && products.length'>
       <div class="product-item" *ngFor='let product of filteredProducts'>
         <div class="image"><img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName'></div>
-        <div class="product-name">{{product.productName}}</div>
+        <div class="product-name"><strong><a [routerLink]="['/products', product.id]">{{product.productName}}</a></strong></div>
         <div class="product-code">{{product.productCode | lowercase | convertToSpaces:'-'}}</div>
         <div class="date-available">{{product.releaseDate | date}}</div>
         <div class="price">{{product.price | currency:'USD':'symbol':'1.2-2' }}</div>
         <div class="rating">
           <app-star-rating [rating]='product.rating' (notify)='onNotifyClick($event)'></app-star-rating>
         </div>
+        <div class="details"><button [routerLink]="['/products', product.id]" class="btn btn-default">Details</button></div>
       </div>
     </div>
   </div>

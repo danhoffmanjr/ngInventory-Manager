@@ -35,7 +35,7 @@
 }
 
 .image {
-    flex-basis: 16.6vw;
+    flex-basis: 14.6vw;
 }
 
 .image > img {
@@ -48,19 +48,23 @@
 }
 
 .product-code {
-    flex-basis: 12.6vw;
+    flex-basis: 10.6vw;
 }
 
 .date-available {
-    flex-basis: 16.6vw;
+    flex-basis: 14.6vw;
 }
 
 .price {
-    flex-basis: 10.6vw;
+    flex-basis: 8.6vw;
 }
 
 .rating {
     flex-basis: 13.6vw;
+}
+
+.details {
+    flex-basis: 10vw;
 }
 
 .product-clicked-notice {

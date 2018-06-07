@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './../api/in-memory-data.service';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -10,6 +9,7 @@ import { ProductService } from './products/product.service';
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductGuardService } from './products/product-guard.service';
 import { ProductModule } from './products/product.module';
+import { ProductData } from './products/productData';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { ProductModule } from './products/product.module';
     BrowserModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
+      ProductData, { dataEncapsulation: false }
     ),
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },

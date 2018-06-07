@@ -1,88 +1,40 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from './product';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable }  from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, of, throwError, pipe }  from 'rxjs';
+import { catchError, tap, map } from 'rxjs/operators';
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class ProductService {
-    private _apiUrl: string = './../api/in-memory-data.service'; // simulating web api end point & json response type
-    products: IProduct[] = [
-        {
-            "id": 1,
-            "productName": "Leaf Rake",
-            "productCode": "GDN-0011",
-            "releaseDate": "March 19, 2016",
-            "description": "Leaf rake with 48-inch wooden handle.",
-            "price": 19.95,
-            "rating": 3.2,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-        },
-        {
-            "id": 2,
-            "productName": "Garden Cart",
-            "productCode": "GDN-0023",
-            "releaseDate": "March 18, 2016",
-            "description": "15 gallon capacity rolling garden cart",
-            "price": 32.99,
-            "rating": 4.2,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
-        },
-        {
-            "id": 5,
-            "productName": "Hammer",
-            "productCode": "TBX-0048",
-            "releaseDate": "May 21, 2016",
-            "description": "Curved claw steel hammer",
-            "price": 8.9,
-            "rating": 4.8,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
-        },
-        {
-            "id": 8,
-            "productName": "Saw",
-            "productCode": "TBX-0022",
-            "releaseDate": "May 15, 2016",
-            "description": "15-inch steel blade hand saw",
-            "price": 11.55,
-            "rating": 3.7,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
-        },
-        {
-            "id": 10,
-            "productName": "Video Game Controller",
-            "productCode": "GMG-0042",
-            "releaseDate": "October 15, 2015",
-            "description": "Standard two-button video game controller",
-            "price": 35.95,
-            "rating": 4.6,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
-        }
-    ];
+
+    private productsUrl = "api/products";
 
     constructor(private _http: HttpClient) {
-
-    }
-    
-    getProducts(): IProduct[] {
-        console.log('getProducts() called from products.service.ts' + JSON.stringify(this.products));
-        return this.products;
-        /*
-        let products: Observable<IProduct[]> = this._http.get<IProduct[]>(this._apiUrl);
-        console.log('Observable result: ' + JSON.stringify(products));
-        return products;
-
-        
-            .pipe(
-                tap(data => console.log('ALL: ' + JSON.stringify(data)),
-                catchError(this.handleError))
-            )
-        */
     }
 
-    handleError(error: HttpErrorResponse) {
-        console.log(error.message);
-        return Observable.throw(error.message);
-    }
+    // method to fetch list of products 
+  getProducts(): Observable<IProduct[]> {
+    return this._http.get<IProduct[]>(this.productsUrl)
+      .pipe(
+        tap(products => console.log(`getProducts() fetched products`)),
+        catchError(this.handleError('getProducts', []))
+      );
+  }
+
+    private handleError<T> (operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+       
+          // TODO: send the error to remote logging infrastructure
+          console.error(error); // log to console instead
+       
+          // TODO: better job of transforming error for user consumption
+          console.log(`${operation} failed: ${error.message}`);
+       
+          // Let the app keep running by returning an empty result.
+          return of(result as T);
+        };
+      }
 }

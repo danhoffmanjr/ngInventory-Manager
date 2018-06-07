@@ -28,7 +28,7 @@ export class ProductListComponent implements OnInit {
 
   errorMessage: string;
 
-  filteredProducts: IProduct[];
+  filteredProducts: IProduct[] = [];
 
   products: IProduct[] = [];
 
@@ -46,19 +46,17 @@ export class ProductListComponent implements OnInit {
     this.showImage = !this.showImage;
   }
 
+  getProducts(): void {
+    this._productService.getProducts()
+      .subscribe(emitted => {
+        this.products = emitted;
+        this.filteredProducts = this.products;
+      });
+  }
+
   ngOnInit(): void {
     console.log('ngOnInit() called');
-    this.products = this._productService.products;
-    this.filteredProducts = this.products;
-    console.log(this.products);
-
-    /*.subscribe(products => {
-        this.products = products;
-        console.log(products);
-        this.filteredProducts = this.products;
-      },
-      error => this.errorMessage = <any>error);
-      */
+    this.getProducts();
   }
 
 }
